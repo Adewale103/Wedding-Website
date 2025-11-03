@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oreoluwa & Evelyn - Our Wedding</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #8b4513;
+        --secondary: #daa520;
+        --accent: #c19a6b;
+        --dark: #2c1810;
+        --light: #fff8f0;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 700;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 5%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        padding: 0.5rem 5%;
+      }
+
+      nav .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary);
+        transition: all 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%238B4513" width="1200" height="800"/><g fill="%23DAA520" opacity="0.1"><circle cx="200" cy="200" r="100"/><circle cx="1000" cy="600" r="150"/><circle cx="600" cy="400" r="80"/></g></svg>');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+      }
+
+      .hero-content {
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero h1 {
+        font-size: 4.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .hero .date {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator::before {
+        content: "↓";
+        font-size: 2rem;
+        color: var(--white);
+      }
+
+      /* Section Styles */
+      section {
+        padding: 5rem 5%;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin-bottom: 3rem;
+        font-style: italic;
+      }
+
+      /* Our Story */
+      #story {
+        background: var(--light);
+      }
+
+      .story-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .story-image {
+        width: 100%;
+        height: 500px;
+        background: var(--accent);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .story-text h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .story-text p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      /* Wedding Details */
+      .event-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .event-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-top: 4px solid var(--secondary);
+      }
+
+      .event-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .event-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .event-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .event-card .time {
+        font-size: 1.1rem;
+        color: var(--secondary);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .event-card .location {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background: var(--primary);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s;
+        border: 2px solid var(--primary);
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+
+      .btn:hover {
+        background: transparent;
+        color: var(--primary);
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        border-color: var(--secondary);
+      }
+
+      .btn-secondary:hover {
+        background: transparent;
+        color: var(--secondary);
+      }
+
+      /* Gallery */
+      #gallery {
+        background: var(--light);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .gallery-item {
+        height: 300px;
+        background: var(--accent);
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s;
+        position: relative;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+      }
+
+      .gallery-item::after {
+        content: "Click to view";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+
+      /* RSVP */
+      .rsvp-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: var(--white);
+        padding: 3rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid var(--accent);
+        border-radius: 5px;
+        font-family: "Montserrat", sans-serif;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary);
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: normal;
+      }
+
+      /* Contact */
+      #contact {
+        background: var(--light);
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .contact-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .contact-card p {
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-card a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+
+      /* Gifting */
+      .gift-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .gift-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .gift-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .gift-card .account-details {
+        background: var(--light);
+        padding: 1.5rem;
+        border-radius: 5px;
+        margin: 1.5rem 0;
+        text-align: left;
+      }
+
+      .gift-card .account-details p {
+        margin-bottom: 0.5rem;
+      }
+
+      .gift-card .account-details strong {
+        color: var(--primary);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: var(--white);
+        text-align: center;
+        padding: 2rem 5%;
+      }
+
+      footer p {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Countdown Timer */
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        text-align: center;
+      }
+
+      .countdown-item .number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--secondary);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .countdown-item .label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Success Message */
+      .success-message {
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #4caf50;
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        display: none;
+        animation: slideDown 0.3s ease;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateX(-50%) translateY(-100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(-50%) translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 70px;
+          right: -100%;
+          flex-direction: column;
+          background: var(--white);
+          width: 100%;
+          padding: 2rem;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          transition: right 0.3s;
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .story-content {
+          grid-template-columns: 1fr;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .countdown-item .number {
+          font-size: 2rem;
+        }
+
+        section {
+          padding: 3rem 5%;
+        }
+
+        .rsvp-form {
+          padding: 2rem 1.5rem;
+        }
+
+        .radio-group {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+      ✓ Thank you! Your RSVP has been submitted successfully.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="container">
+        <a href="#home" class="logo">O & E</a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" onclick="closeMenu()">Home</a></li>
+          <li><a href="#story" onclick="closeMenu()">Evelyn's Story</a></li>
+          <li><a href="#story2" onclick="closeMenu()">Oreoluwa's Story </a></li>
+          <li><a href="#details" onclick="closeMenu()">Wedding Details</a></li>
+          <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+          <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+          <li><a href="#gifting" onclick="closeMenu()">Gifting</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Oreoluwa & Evelyn</h1>
+        <p class="subtitle">Two Hearts, One Journey</p>
+        <p class="date">November 22, 2025</p>
+        <div class="countdown">
+          <div class="countdown-item">
+            <div class="number" id="days">00</div>
+            <div class="label">Days</div>
+          </div>
+          <div class="countdown-item">
+            <div class="number" id="hours">00</div>
+            <div class="label">Hours</div>
+          </div>
+          <div class="countdown-item">
+            <div class="number" id="minutes">00</div>
+            <div class="label">Minutes</div>
+          </div>
+          <div class="countdown-item">
+            <div class="number" id="seconds">00</div>
+            <div class="label">Seconds</div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story">
+      <div class="container">
+        <h2 class="section-title">Our Love Story</h2>
+        <p class="section-subtitle">How It All Began</p>
+        <div class="story-content">
+          <div class="story-image">
+            <img
+              src="images/ELT_0972 B.jpg"
+              alt="Oreoluwa and Evelyn"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                  135deg,
+                  var(--primary),
+                  var(--secondary)
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 2rem;
+              "
+            >
+              Add Your Photo Here
+            </div>
+          </div>
+          <div class="story-text">
+            <h3>Evelyn's Story</h3>
+            <p>
+              My not-so-first encounter with Oreoluwa was in November at the
+              church car park, but I wouldn't exactly say I 'noticed' him. It
+              wasn't until our December youth camp that I became more aware of
+              his presence. A few weeks later, in January 2022, he sent me a
+              message about a scholarship opportunity related to my field. It
+              was thoughtful and kind, and our friendship began to grow from
+              there. Our conversations were always meaningful about life,
+              purpose, and walking closely with God. I appreciated his
+              sincerity, his calmness, and his depth. As we chatted, our
+              conversations flowed effortlessly, and we discovered shared values
+              and passions. We became fast friends, supporting each other's
+              growth and development. Our friendship blossomed into a beautiful
+              accountability partnership, where we encouraged each other
+              spiritually, mentally, and even in our reading habits(He even
+              bought me books to encourage me😃).
+            </p>
+            <p>
+              By March that year, he had started mentoring me in some areas of
+              personal development, and I could see that he genuinely cared
+              about my progress. His consistency, humility, and godly mindset
+              stood out. In early 2023, when he asked to meet and expressed his
+              intentions, I wasn’t surprised but I knew I had to be sure it was
+              God’s will. I took time to pray and seek confirmation, because
+              marriage, to me, is not just about love ,it’s about destiny and
+              purpose. When I finally got the assurance I needed, I said yes
+              peacefully and joyfully. Our relationship has been a truly
+              enriching experience. Oreoluwa is not just my partner; he's my
+              best friend. He's thoughtful, disciplined, and kind. He makes me
+              feel supported and valued, and I thank God for making our paths
+              cross in such a divine way. Truly, God’s timing and design are
+              perfect and I’m grateful to be walking this journey of faith and
+              love with him.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story2">
+      <div class="container">
+        <div class="story-content">
+          <div class="story-image">
+            <img
+              src="images/ELT_0983.jpg"
+              alt="Oreoluwa and Evelyn"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                  135deg,
+                  var(--primary),
+                  var(--secondary)
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 2rem;
+              "
+            >
+              Add Your Photo Here
+            </div>
+          </div>
+          <div class="story-text">
+            <h3>Oreoulwa's Story</h3>
+            <p>
+              I am truly favored to have Evelyn as my fiancée. I’ve always
+              believed that God is intentional about every detail of my life
+              including choosing the right partner just as He gave me breath
+              before I ever asked for it. I first saw Evelyn one Sunday
+              afternoon in late 2021 at our church in Ilorin, where I was
+              conducting fieldwork for my Master’s research. Our first real
+              conversation came a few weeks later during the Annual Youth Camp
+              Meeting in December, where she served as the Vice President of the
+              Young Adults Fellowship. It was just a brief chat, no spark, no
+              expectations but something about her stood out. In 2022, while she
+              was in her final undergraduate year, I came across a research
+              scholarship that I thought could benefit her. I found her contact
+              in our fellowship WhatsApp group and sent it to her and a few
+              others. That simple gesture began a friendship that grew
+              naturally. From our very first chat, I had a quiet feeling that
+              we’d become close though I didn’t know how close.
+            </p>
+            <p>
+              We often talked about life, purpose, and building a
+              Christ-centered future. By March, our conversations had evolved
+              into a mentor-mentee relationship. She would share her progress on
+              personal development, and our communication became deeper and more
+              consistent. The bond grew gently and genuinely. By August 2022, I
+              began to sense the Holy Spirit leading me to see her as more than
+              a friend. I prayed, reasoned, and sought God’s guidance — and soon
+              realized she could be the woman He had prepared for me. I liked
+              her, admired her, and saw a beautiful mix of purpose, grace, and
+              humility. That same month, work took me away from Ilorin for
+              several months. Yet even from a distance, I kept praying. Our
+              friendship continued, and I began to sense she might also feel the
+              same way though I waited for clarity. When I returned to Ilorin in
+              January 2023, I knew it was time.
+            </p>
+            <p>
+              I invited her for a friendly meetup and, after some laughter and
+              catching up, I told her my intentions. She appreciated my honesty
+              but asked for more time to pray. She later shared that she had
+              also been praying about us but wanted further confirmation. By
+              March 2023, she returned with peace in her heart and that’s how
+              our courtship began, in the Lord’s name. Since then, it’s been a
+              journey of love, faith, laughter, and growth. Every step has
+              revealed more reasons to thank God for bringing Evelyn into my
+              life. She’s more than I prayed for, truly a gift of grace. All I
+              needed to do was trust God and wait patiently, and He wrote our
+              story perfectly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wedding Details -->
+    <section id="details">
+      <div class="container">
+        <h2 class="section-title">Wedding Events</h2>
+        <p class="section-subtitle">Join us in celebrating our special day</p>
+        <div class="event-cards">
+          <div class="event-card">
+            <div class="event-icon">⛪</div>
+            <h3>Church Ceremony</h3>
+            <p class="time">10:00 AM</p>
+            <div class="location">
+              <p><strong>Saturday, November 22, 2025</strong></p>
+              <p>Chapel of Redemption, UMCA</p>
+              <p>Agba-dam Road, Ilorin, Kwara-State</p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/cyJvpYTKjaWwtzSM9"
+              target="_blank"
+              class="btn"
+              >Get Directions</a
+            >
+          </div>
+
+          <div class="event-card">
+            <div class="event-icon">🎉</div>
+            <h3>Reception</h3>
+            <p class="time">12:00 PM</p>
+            <div class="location">
+              <p><strong>Saturday, November 22, 2025</strong></p>
+              <p>Excellence Hall</p>
+              <p>Pipeline Road, Ilorin</p>
+              <p>
+                <strong>Colour of the Day: </strong>Emerald Green/Champagne Gold
+              </p>
+            </div>
+            <a
+              href="https://www.google.com/maps/place/Excellence+Hall,+Guest+house+and+Foods/@8.4733295,4.5944085,17z/data=!3m1!4b1!4m9!3m8!1s0x10364d24a3775c33:0x58f6ab0af8f4e887!5m2!4m1!1i2!8m2!3d8.4733295!4d4.5944085!16s%2Fg%2F1hc3j_vkq?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              class="btn"
+              >Get Directions</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="container">
+        <h2 class="section-title">Our Memories</h2>
+        <p class="section-subtitle">
+          Captured moments from our journey together
+        </p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="images/ELT_0878 .jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            class="gallery-item"
+            style="background: linear-gradient(135deg, #daa520, #c19a6b)"
+          >
+            <img
+              src="images/ELT_0887 .jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            class="gallery-item"
+            style="background: linear-gradient(135deg, #c19a6b, #8b4513)"
+          >
+            <img
+              src="images/ELT_0950 B.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            class="gallery-item"
+            style="background: linear-gradient(135deg, #8b4513, #c19a6b)"
+          >
+            <img
+              src="images/ELT_0972 B.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            class="gallery-item"
+            style="background: linear-gradient(135deg, #daa520, #8b4513)"
+          >
+            <img
+              src="images/ELT_0983.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            class="gallery-item"
+            style="background: linear-gradient(135deg, #c19a6b, #daa520)"
+          >
+            <img
+              src="images/ELT_0990.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Have questions? We're here to help!</p>
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3>Contact 1</h3>
+            <p><strong>Feyi</strong></p>
+            <p><a href="tel:+2349137284595">+234 913 728 4595</a></p>
+          </div>
+          <div class="contact-card">
+            <h3>Contact 2</h3>
+            <p><strong>Victory</strong></p>
+            <p><a href="tel:+2349025585401">+234 902 558 5401</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gifting -->
+    <section id="gifting">
+      <div class="container">
+        <h2 class="section-title">Gifting</h2>
+        <p class="section-subtitle">
+          Your presence is the greatest gift, but if you wish to bless us...
+        </p>
+        <div class="gift-options">
+          <div class="gift-card">
+            <h3>Account 1</h3>
+            <div class="account-details">
+              <p><strong>Bank:</strong> UBA</p>
+              <p><strong>Account Name:</strong> Inelo Evelyn</p>
+              <p><strong>Account Number:</strong> 2085424360</p>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--accent)">
+              For local transfers
+            </p>
+          </div>
+
+          <div class="gift-card">
+            <h3>Account 2</h3>
+            <div class="account-details">
+              <p><strong>Bank:</strong> GTBank</p>
+              <p><strong>Account Name:</strong> Biala Oreoluwa</p>
+              <p><strong>Account Number:</strong> 0174155846</p>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--accent)">
+              For local transfers
+            </p>
+          </div>
+
+          <div class="gift-card">
+            <h3>WishList</h3>
+            <p style="margin: 1.5rem 0">
+              We've also created a registry for household items and gifts.
+            </p>
+            <a
+              href="https://www.thingstogetme.com/1900244a48e56"
+              target="_blank"
+              class="btn"
+              >View Registry</a
+            >
+            <p
+              style="
+                margin-top: 1.5rem;
+                font-size: 0.9rem;
+                color: var(--accent);
+              "
+            >
+              You can be a part
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Oreoluwa & Evelyn Wedding. All rights reserved.</p>
+      <p>With love from EventCove Africa</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem"></p>
+    </footer>
+
+    <script>
+      // Countdown Timer
+      function updateCountdown() {
+        // SET YOUR WEDDING DATE HERE (Year, Month-1, Day, Hour, Minute)
+        const weddingDate = new Date(2025, 10, 22, 11, 0, 0).getTime();
+
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent =
+          days < 10 ? "0" + days : days;
+        document.getElementById("hours").textContent =
+          hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").textContent =
+          minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").textContent =
+          seconds < 10 ? "0" + seconds : seconds;
+
+        if (distance < 0) {
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+        }
+      }
+
+      // Update countdown every second
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Mobile Menu Toggle
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+      }
+
+      function closeMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.remove("active");
+      }
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // RSVP Form Handler
+      function handleRSVP(event) {
+        event.preventDefault();
+
+        // Get form data
+        const formData = new FormData(event.target);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        // Get selected events
+        const eventsSelect = document.getElementById("events");
+        const selectedEvents = Array.from(eventsSelect.selectedOptions).map(
+          (opt) => opt.value
+        );
+        data.events = selectedEvents;
+
+        // Log the data (In production, you would send this to a server)
+        console.log("RSVP Data:", data);
+
+        // Show success message
+        const successMessage = document.getElementById("successMessage");
+        successMessage.classList.add("show");
+
+        // Reset form
+        event.target.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.classList.remove("show");
+        }, 5000);
+
+        // Optional: Send to your backend
+        // fetch('your-backend-url.com/rsvp', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(data)
+        // });
+
+        return false;
+      }
+
+      // Gallery click handler (optional - you can add lightbox functionality)
+      document.querySelectorAll(".gallery-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          alert(
+            "Gallery lightbox functionality - you can add a proper image viewer here"
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
